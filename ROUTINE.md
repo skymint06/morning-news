@@ -29,7 +29,10 @@ DOW=$(TZ=Asia/Tokyo date +%u)                  # 1 なら月曜
 echo "$TODAY $DAY $DOW"
 ```
 
-`DOW` が 1 のときだけ、手順3と手順4も行います。それ以外の日は手順2のあと手順5へ進みます。
+進め方は曜日で変わります。
+
+- **月曜以外(`DOW` が 1 以外)**: 手順2 → 5 → 6 → 7(1回目の送信)で終わりです。手順3と4は行いません。
+- **月曜(`DOW` が 1)**: まずニュースだけを、手順2 → 5 → 6 → 7(1回目の送信)で先に送ります。持ち主が毎朝同じ時刻にニュースを読めるようにするためです。そのあと手順3と4を行い、`data/$DAY.json` に `industry` と `companies` を書き足して、もう一度手順5 → 6を行い、手順7の2回目の送信をします。
 
 ## 2. 前日のニュースを集める(毎日)
 
@@ -119,9 +122,11 @@ echo "$TODAY $DAY $DOW"
 - 月曜: それに加えて `industry`(`overview` と `sectors`)と `companies`
 
 ```bash
-pip install -q -r requirements.txt
+python -m pip install -q -r requirements.txt
 python make_image.py data/$DAY.json
 ```
+
+ライブラリは必ず `python -m pip` で入れてください。`pip` だけで実行すると、`python` とは別のPythonに入ってしまい、プログラムから読み込めません。
 
 「収まりません」「入りきらない」というエラーが出たら、長い文章を短くして作り直します。それでも収まらなければ、箇条書きを減らします(ニュースの件数6件、業界4つ、企業9社は減らさない)。
 
@@ -146,6 +151,8 @@ git push origin main
 SHA=$(git rev-parse HEAD)
 BASE="https://raw.githubusercontent.com/skymint06/morning-news/$SHA/output"
 ```
+
+月曜の2回目は、2回目のプッシュのあとの `SHA` で `BASE` を作り直してください。
 
 プッシュのあと、画像のURLが開けることを確かめます(200 が返るまで、数秒おきに最大1分ほど試す)。
 

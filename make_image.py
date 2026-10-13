@@ -53,7 +53,7 @@ from datetime import date
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-import fitz
+import pymupdf
 from reportlab.lib import colors
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
@@ -558,7 +558,7 @@ def render(build, items, scale, first_page, gap_count, title, subtitle, color, d
 
 
 def save_images(pdf_bytes, png_path, preview_path):
-    doc = fitz.open(stream=pdf_bytes, filetype="pdf")
+    doc = pymupdf.open(stream=pdf_bytes, filetype="pdf")
     if doc.page_count != 1:
         sys.exit(f"エラー: {doc.page_count}ページに分かれてしまいました。")
     page = doc[0]
