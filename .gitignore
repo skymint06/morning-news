@@ -1,0 +1,7 @@
+# LINEのトークンなど、公開してはいけない設定
+.env
+
+# このMac専用の作業環境
+.venv/
+__pycache__/
+.DS_Store
