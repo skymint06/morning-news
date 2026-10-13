@@ -87,6 +87,30 @@ git checkout main && git pull origin main
 - 数字は、業界団体や会社の発表を引用している記事で確かめます。記事によって数字が食い違うときは、発表元に近いほうを採り、判断できなければ載せません。
 - 根拠が二次的な報道だけのときは、`source` にその媒体名を書きます。
 
+公式ページは WebFetch で直接開けます。数字はできるだけ公式ページか公式資料で確かめてください。
+
+- PDFは WebFetch では本文を読めないことがあります。その場合は、WebFetch が保存したPDFを `pdftotext -layout` で文字に変換して読みます。
+- 表に複数の年が並んでいるページ(銅建値など)は、今年の表の値であることを確かめます。
+- 会社の受注高や売上高は、全社の数字か部門の数字かを区別して書きます(例: 東京精密は全社と半導体製造装置部門で数字が違います)。
+
+よく使う公式ページ:
+
+| 内容 | URL |
+|---|---|
+| 工作機械受注(速報・確報のPDFへのリンク) | https://www.jmtba.or.jp/statistics/ |
+| 粗鋼生産 | https://www.jisf.or.jp/data/seisan/month.html |
+| 銅の国内建値(改定の履歴) | https://www.jx-nmm.com/cuprice/ |
+| 東京製鉄の販売価格・鉄スクラップ購入価格 | https://www.tokyosteel.co.jp/salesprice/ |
+| 日本製半導体製造装置の販売高・需要予測 | https://www.seaj.or.jp/statistics/ |
+| 大同特殊鋼のお知らせ(価格改定など) | https://www.daido.co.jp/ |
+| 東京精密 IR | https://www.accretech.com/jp/ir/ |
+| 日本電子 決算資料 | https://www.jeol.co.jp/ir/financial_report/ |
+| エフピコ IR | https://www.fpco.jp/ir.html |
+| SMC IRカレンダー | https://www.smcworld.com/ir/ja-jp/calendar.html |
+| 小島プレス工業 お知らせ | https://www.kojima-tns.co.jp/news/ |
+| 高木製作所 | https://takagi-mfg.co.jp/ |
+| 富士工業(FUJIOH) | https://www.fujioh.com/ |
+
 調べる内容の目安は次のとおりです。
 
 - **鉄鋼・非鉄金属**: 粗鋼生産(日本鉄鋼連盟)、鋼材の市況(熱延鋼板、H形鋼、鉄スクラップ)、特殊鋼メーカーの値上げや生産(プロテリアル、大同特殊鋼、山陽特殊製鋼、愛知製鋼)、銅の国内建値とLME銅、アルミ、ニッケル。鋼種(SS400、S45C、S50C、SCM材、SKD材、SUS304)の名前が出ている情報があれば優先して載せる。鋼種別の価格が見つからないときは、無理に書かない。
